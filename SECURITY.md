@@ -6,6 +6,9 @@
 | Unbounded pending table | MAX_OPEN 32 |
 | Fee drain or zero fee | lamport min/max |
 | Replay fulfillment | `fulfilled` flag |
-| Forged "proof" | not accepted — function does not verify |
+| Price already public at bet time | `publishTime <= betTs` refused |
+| Replayed update | `seq <= lastSeq` refused |
+| Wide or zero price | confidence > 100 bps, or price 0, refused |
+| Forged proof | not accepted — no signature check |
 
-Production still needs the real program id, account metas, a verified callback, and a WAX-side record that the Solana randomness was published **after** the bet. None of that is claimed here.
+Not claimed: live Pyth/Switchboard, program ids, account metas, wasm.
