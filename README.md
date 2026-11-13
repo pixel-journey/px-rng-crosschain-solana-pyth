@@ -1,15 +1,15 @@
-# px-rng-crosschain-solana-pyth
+# Solana randomness facade: Pyth Entropy or Switchboard
 
-> **Trust:** private educational lab (Tier B)  
-> **Domain:** cross-chain Solana randomness facade  
+> **Domain:** cross-chain Solana randomness  
 > **Sources:** [SOURCES.md](SOURCES.md)  
-> **Vault:** [px-contract-examples-vault](https://github.com/pixel-journey/px-contract-examples-vault)
+> **Catalog:** [px-contract-examples-vault](https://github.com/pixel-journey/px-contract-examples-vault)  
+> **Path:** [ORNG-LEARNING-PATH.md](https://github.com/pixel-journey/px-contract-examples-vault/blob/main/docs/ORNG-LEARNING-PATH.md)
 
-**One-sentence goal:** Teach a facade that **chooses** Pyth Entropy or Switchboard, builds an **unsent** Solana `request` body, bounds the fee, **fulfills once**, and accepts a Pyth price update only when `publishTime` is **strictly after** the bet.
+**Goal:** A facade that **chooses** Pyth Entropy or Switchboard, builds an **unsent** Solana `request` body, bounds the fee, **fulfills once**, and accepts a Pyth price update only when `publishTime` is **strictly after** the bet.
 
-**Real code:** `npm test` (12 tests). Does **not** talk to Solana or verify signatures.
+**Code under test:** `npm test` (12 tests). Does not talk to Solana or verify signatures.
 
-Docs: [Pyth](https://docs.pyth.network/), [Switchboard](https://docs.switchboard.xyz/). WAX primary: [orng.wax](https://github.com/worldwide-asset-exchange/wax-orng). Sibling: [EVM VRF bridge](https://github.com/pixel-journey/px-rng-crosschain-evm-vrf-bridge).
+**Docs:** [Pyth](https://docs.pyth.network/), [Switchboard](https://docs.switchboard.xyz/). **WAX primary:** [orng.wax](https://github.com/worldwide-asset-exchange/wax-orng). **Sibling:** [EVM VRF bridge](https://github.com/pixel-journey/px-rng-crosschain-evm-vrf-bridge).
 
 ## What is true (executed)
 
