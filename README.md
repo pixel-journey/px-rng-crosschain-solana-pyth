@@ -2,23 +2,23 @@
 
 > **Domain:** cross-chain Solana randomness  
 > **Sources:** [SOURCES.md](SOURCES.md)  
-> **Catalog:** [px-contract-examples-vault](https://github.com/pixel-journey/px-contract-examples-vault)  
 > **Path:** [ORNG-LEARNING-PATH.md](https://github.com/pixel-journey/px-contract-examples-vault/blob/main/docs/ORNG-LEARNING-PATH.md)
 
-**Goal:** A facade that **chooses** Pyth Entropy or Switchboard, builds an **unsent** Solana `request` body, bounds the fee, **fulfills once**, and accepts a Pyth price update only when `publishTime` is **strictly after** the bet.
+**Goal:** Choose Pyth Entropy or Switchboard, build an **unsent** Solana request, bound fees, **fulfill once**, and accept a price update only when `publishTime` is **strictly after** the bet (plus seq/conf/expo gates).
 
-**Code under test:** `npm test` (12 tests). Does not talk to Solana or verify signatures.
+**Code under test:** `npm test`. No Solana RPC, no signature verification.
 
-**Docs:** [Pyth](https://docs.pyth.network/), [Switchboard](https://docs.switchboard.xyz/). **WAX primary:** [orng.wax](https://github.com/worldwide-asset-exchange/wax-orng). **Sibling:** [EVM VRF bridge](https://github.com/pixel-journey/px-rng-crosschain-evm-vrf-bridge).
+**Docs:** [Pyth](https://docs.pyth.network/), [Switchboard](https://docs.switchboard.xyz/). **WAX primary:** [orng.wax](https://github.com/worldwide-asset-exchange/wax-orng).
 
-## What is true (executed)
+## Learning materials
 
-| Rule | Result |
-|------|--------|
-| Provider routing | unsent bodies for pyth-entropy / switchboard |
-| Fee / open set / seed | bounded; max 32 open; 64 hex |
-| `fulfillOnce` | second call refused; proof not checked |
-| `gatePriceUpdate` | publishTime > betTs; seq; conf ≤ 100 bps; expo bounds |
+| Doc | Role |
+| --- | --- |
+| [EDUCATION.md](EDUCATION.md) | Beginner → masterclass |
+| [WORKED-EXAMPLES.md](WORKED-EXAMPLES.md) | Route, fulfill, price gate |
+| [TIPS.md](TIPS.md) | Prefer orng on WAX |
+| [SECURITY.md](SECURITY.md) | Bounds; no proof verify |
+| [SOURCES.md](SOURCES.md) | Official |
 
 ```bash
 npm test

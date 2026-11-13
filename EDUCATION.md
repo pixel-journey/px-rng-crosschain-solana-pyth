@@ -1,17 +1,28 @@
-# Education
+# Education — Solana Pyth / Switchboard facade
 
-Quest 017 routes `requestRandomness` to `orng.wax` or an EVM VRF consumer. Quest 018 is the **same idea** pointed at Solana, plus a gate for using a Pyth price update as entropy.
+> **Rung:** `npm test` passes. **Unsent** Solana request bodies; fulfill is once-only.  
+> Price-update gate is a **timing/quality** filter, not a signature verifier.
 
-| Provider | Program label in the unsent body |
-|----------|----------------------------------|
-| `pyth-entropy` | `pyth-entropy` |
-| `switchboard` | `switchboard-on-demand` |
+## What you should be able to do
 
-A price that was already published at `betTs` can be ground against. `gatePriceUpdate` therefore requires `publishTime > betTs` (equal is refused), a strictly newer `seq`, and confidence no wider than 100 bps of `|price|`. A zero price is refused because the confidence ratio is undefined.
+| Level | Skill |
+| --- | --- |
+| Beginner | Route to pyth-entropy or switchboard |
+| Intermediate | Fee bounds, max open, seed format |
+| Masterclass | `gatePriceUpdate`: after bet, newer seq, conf ≤ 100 bps |
 
-## What a future agent should not invent
+## Beginner
 
-- Do not mark `body.sent` true. Nothing was broadcast.
-- Do not treat `fulfillOnce` or `gatePriceUpdate` as signature verification.
-- Do not reuse `orng.wax` action names for this quest.
-- Fee units are **lamports**, not WAX (8 decimals) and not LINK.
+`requestRandomness` appends an open row and returns `{ sent: false, chain: "solana", ... }`.
+
+## Intermediate
+
+`fulfillOnce` refuses unknown id and second fulfill. Randomness is opaque 64-hex — **no proof check**.
+
+## Masterclass
+
+`gatePriceUpdate` requires matching feed, `publishTime > betTs`, strictly increasing seq, expo in [-18, 8], and confidence not wider than 100 bps of |price|. Equal publish time is already public → refused.
+
+## Will not teach
+
+Live Solana RPC, Pyth/Switchboard cryptographic verification, or replacing orng.wax on WAX.
