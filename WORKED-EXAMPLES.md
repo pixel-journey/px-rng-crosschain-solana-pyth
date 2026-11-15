@@ -1,25 +1,30 @@
-# Worked examples — Solana facade
+# Worked examples — Solana entropy facade
 
-## Example A — open request
+Seed `ab`×32. Fees between `MIN_FEE_LAMPORTS` and `MAX_FEE_LAMPORTS`.
 
-Valid seed + fee → body with program `pyth-entropy` or `switchboard-on-demand`.
+## requestRandomness
 
-## Example B — fee bounds
+Provider `pyth-entropy` → body `sent:false`, chain `solana`, program `pyth-entropy`, instruction `request`, userSeed lowercased.
 
-Below MIN or above MAX lamports → refused.
+Provider `switchboard` → program `switchboard-on-demand`, still unsent.
 
-## Example C — fulfill once
+Fee below min or above max refused. Duplicate open id refused. Bad seed `zz` refused. 33rd open request refused (`MAX_OPEN` 32).
 
-First ok; second → `already fulfilled`.
+## fulfillOnce
 
-## Example D — price after bet
+Id 7 fulfilled with `cd`×32 once; second call `already fulfilled`. Unknown id / short randomness refused.
 
-publishTime 1001, betTs 1000 → seq returned. publishTime 1000 → `not after bet`.
+## gatePriceUpdate
 
-## Example E — wide confidence
+Bet at T0, lastSeq 1, update seq 2, publishTime T0+1, conf 50_000 on price 100_000_000, expo -8 → accepts seq 2.
 
-conf * 10000 > |price| * 100 → `wide confidence`.
+| Failure | Reason |
+| --- | --- |
+| publishTime = T0 or earlier | not after bet |
+| seq <= lastSeq | stale seq |
+| conf 2_000_000 on that price | wide confidence |
+| price 0 conf 0 | wide confidence |
+| expo -19 | bad expo |
+| different feedId | feed mismatch |
 
-## Example F — stale seq
-
-seq ≤ lastSeq → refused.
+Proofs are **not** verified. Bodies are unsent teaching shapes.
