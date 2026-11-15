@@ -1,11 +1,14 @@
-# Solana RNG request facade (Pyth / Switchboard)
+# Solana RNG facade (Pyth Entropy / Switchboard)
 
-Unsent program bodies, fee bounds, once-only fulfill, and a post-bet price update gate. Educational TypeScript only.
+Educational unsent request bodies + once-fulfill + post-bet price gate. Pure TypeScript; not live Solana clients.
 
 | Doc | Role |
 | --- | --- |
 | [EDUCATION.md](EDUCATION.md) | Scope |
 | [WORKED-EXAMPLES.md](WORKED-EXAMPLES.md) | Tables |
+| [TIPS.md](TIPS.md) | Design tips |
+| [SECURITY.md](SECURITY.md) | Gaps |
+| [SOURCES.md](SOURCES.md) | Links |
 
 ```bash
 npm test

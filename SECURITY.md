@@ -1,11 +1,21 @@
-# Security notes — Solana facade
+# Security — Solana RNG facade
 
-| Mitigated | Behavior |
+## Closed in tests
+
+| Issue | Behavior |
 | --- | --- |
-| Bad seed / fee / id | refused |
-| Capacity | max 32 open |
-| Double fulfill | refused |
-| Stale / early price | refused |
-| Wide conf / bad expo | refused |
+| Fee out of range | refused |
+| Bad seed / duplicate id / capacity | refused |
+| Second fulfill | already fulfilled |
+| publishTime ≤ betTs | not after bet |
+| stale seq / wide conf / bad expo / feed mismatch | refused |
 
-**Not mitigated:** cryptographic proof verification.
+## Not closed
+
+| Concern | Guidance |
+| --- | --- |
+| Cryptographic verify | Real Pyth/Switchboard verification |
+| RPC trust | Official endpoints, not client-supplied accounts |
+| Cross-chain relay | Who posts entropy onto WAX and with what auth |
+
+Unsent bodies only in this repository.
