@@ -1,30 +1,31 @@
-# Worked examples — Solana entropy facade
+# Worked examples — Solana RNG facade
 
-Seed `ab`×32. Fees between `MIN_FEE_LAMPORTS` and `MAX_FEE_LAMPORTS`.
+Unsent instruction bodies only. Seed `ab`×32, randomness `cd`×32, `T0 = 1_700_000_000`.
 
 ## requestRandomness
 
-Provider `pyth-entropy` → body `sent:false`, chain `solana`, program `pyth-entropy`, instruction `request`, userSeed lowercased.
+| Provider | body.program | body.sent |
+| --- | --- | --- |
+| pyth-entropy | pyth-entropy | false |
+| switchboard | switchboard-on-demand | false |
 
-Provider `switchboard` → program `switchboard-on-demand`, still unsent.
-
-Fee below min or above max refused. Duplicate open id refused. Bad seed `zz` refused. 33rd open request refused (`MAX_OPEN` 32).
+Fee must sit in `[MIN_FEE_LAMPORTS, MAX_FEE_LAMPORTS]`. Seed uppercased is stored lowercased. Duplicate id, bad seed `zz`, and **33rd** open request refused (`MAX_OPEN`).
 
 ## fulfillOnce
 
-Id 7 fulfilled with `cd`×32 once; second call `already fulfilled`. Unknown id / short randomness refused.
+First fulfill sets `fulfilled true`. Second → already fulfilled. Unknown id / short randomness refused.
 
 ## gatePriceUpdate
 
-Bet at T0, lastSeq 1, update seq 2, publishTime T0+1, conf 50_000 on price 100_000_000, expo -8 → accepts seq 2.
+Accept when publishTime **strictly after** betTs, seq > lastSeq, confidence tight, expo in range, feed matches (case-insensitive).
 
-| Failure | Reason |
+| Case | Error |
 | --- | --- |
-| publishTime = T0 or earlier | not after bet |
-| seq <= lastSeq | stale seq |
-| conf 2_000_000 on that price | wide confidence |
+| publishTime = betTs or earlier | not after bet |
+| seq ≤ lastSeq | stale seq |
+| conf 2_000_000 | wide confidence |
 | price 0 conf 0 | wide confidence |
 | expo -19 | bad expo |
 | different feedId | feed mismatch |
 
-Proofs are **not** verified. Bodies are unsent teaching shapes.
+Not live Solana RPC. Not production Pyth/Switchboard clients.
