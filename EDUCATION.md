@@ -37,7 +37,29 @@ Fee must sit in `[MIN_FEE_LAMPORTS, MAX_FEE_LAMPORTS]`. Duplicate request id, ba
 
 Same-second or earlier publish is a fairness bug — refused like drand’s post-bet rule.
 
+### Common mistakes
+
+1. Using the **price** as the random number (market print ≠ entropy request).  
+2. Accepting a stale print because it is "close" to bet time (`>=` instead of `>`).  
+3. Routing preferred and fallback to the same program id.  
+4. Porting this to WAX and skipping `orng.wax`.  
+5. Claiming Ed25519 or Switchboard attestation checks (this lab does not do them).
+
+### Nice-to-have extensions (not in this repo)
+
+| Idea | Note |
+| --- | --- |
+| Real Pyth pull / Switchboard verify | Needs the Solana program |
+| Confidence as a fraction of price | New tests |
+| WAX bet settled by a Solana print | Oracle bridge threat model |
+
 Numbers: [WORKED-EXAMPLES.md](WORKED-EXAMPLES.md).
+
+### Exercises
+
+1. Are instruction bodies sent? (`sent: false`)  
+2. `publishTime === betTs` — accept or refuse? (refuse)  
+3. Preferred RNG on WAX mainnet? (`orng.wax`)
 
 ### What this is not
 
