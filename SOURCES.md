@@ -2,9 +2,10 @@
 
 | Source | Use |
 | --- | --- |
-| Pyth Network docs (external) | Entropy / price feeds — conceptual |
-| Switchboard docs (external) | On-demand randomness — conceptual |
-| [docs.wax.io](https://docs.wax.io/) | WAX side settlement context |
-| [wax-orng](https://github.com/worldwide-asset-exchange/wax-orng) | Preferred native WAX RNG |
+| [Pyth Entropy](https://docs.pyth.network/entropy) | On-chain randomness product this facade names |
+| [Switchboard](https://docs.switchboard.xyz/) | Alternate backend |
+| [Pyth price feeds](https://docs.pyth.network/price-feeds) | publishTime / confidence vocabulary |
+| [wax-orng](https://github.com/worldwide-asset-exchange/wax-orng) | Native WAX RNG |
+| [docs.wax.io](https://docs.wax.io/) | Settlement chain docs |
 
-Related: [EVM facade](https://github.com/pixel-journey/px-rng-crosschain-evm-vrf-bridge) · [drand](https://github.com/pixel-journey/px-rng-fallback-drand-bls-verifier) · [ORNG path](https://github.com/pixel-journey/px-contract-examples-vault/blob/main/docs/ORNG-LEARNING-PATH.md)
+This repository does not verify signatures and does not send transactions.
