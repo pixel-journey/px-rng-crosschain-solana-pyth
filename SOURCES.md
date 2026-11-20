@@ -17,4 +17,4 @@ This repository does not verify signatures and does not send transactions. Price
 | [EVM VRF facade](https://github.com/pixel-journey/px-rng-crosschain-evm-vrf-bridge) | orng vs Chainlink-style route |
 | [drand](https://github.com/pixel-journey/px-rng-fallback-drand-bls-verifier) | Post-bet time gate |
 | [v3 starter](https://github.com/pixel-journey/px-orng-v3-randnotify-starter) | Native WAX job table |
-| [ORNG path](https://github.com/pixel-journey/px-contract-examples-vault/blob/main/docs/ORNG-LEARNING-PATH.md) | Section E fallbacks |
+| `px-contract-examples-vault` (private index; not this public course) | Section E fallbacks |
